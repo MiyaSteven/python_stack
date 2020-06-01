@@ -1,6 +1,6 @@
 # Basic - Print all integers from 0 to 150.
 y = 0
-while y <= 150:
+while y <= 150: 
     print(y)
     y = y + 1
 
@@ -14,14 +14,14 @@ while x < 1001:
 j = 0
 txt = "Coding"
 while j < 101:
-    if j % 5 == 0:
-        print(txt)
-        j + 1
     if j % 10 == 0:
         print(txt + "Dojo")
+    elif j % 5 == 0:
+        print(txt)
     else:
         print(j)
-j + 1
+    j += 1
+
 
 # Whoa. That Sucker's Huge - Add odd integers from 0 to 500,000, and print the final sum.
 z = 0
