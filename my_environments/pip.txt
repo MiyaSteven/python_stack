@@ -1,0 +1,9 @@
+pip list = lists ALL the packages and version 
+deactivate = deactivate the virtual environment
+pip3 list = lists packages and versions that are native to laptop
+source py3Env/bin/activate = start virtual environment
+pip freeze = shows packages installed via pip 
+inside the Desktop folder is requirements.txt which has all the packages installed via pip
+pip uninstall Django uninstalled the package Django
+pip show Django looked for the package called Django but wasn't found
+pip search Flask found every package related to Flask inside this virtual environment
