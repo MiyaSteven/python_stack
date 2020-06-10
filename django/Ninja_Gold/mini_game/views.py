@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from time import strftime
+from .models import User
 import random
 
 def index(request):
@@ -30,14 +31,21 @@ def reset(request):
     request.session['box'] = []
     return redirect('/')
 
-def user_settings(request):
-    request.session['turns'] = 0
-    request.session['goals'] = 0
-    return render(request, 'users_rules.html')
+def create_account(request):
+    return render(request, 'create_account.html')
+
+def process_user(request):
+    User.objects.create(
+        name=request.POST['name'],
+        password=request.POST['password'],
+    )
+    return redirect('/')
 
 def change_settings(request):
-    request.session['turns'] = request.POST['max_turns']
-    request.session['goals'] = request.POST['gold_goal']
+    User.objects.get(id)(
+        max_turns=request.POST['turns'],
+        gold_goals=request.POST['goals'],
+    )
     return redirect('/')
 
 # Ron , Casey, Keith, Steven, Daniel, Jerome
