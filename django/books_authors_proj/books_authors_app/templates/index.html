@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+</head>
+<body>
+    <a href="/authors">Authors</a>
+    <h1>Add a Book</h1>
+    <form action="/process_books" method="POST">
+        {% csrf_token %}
+        <label for="title">Title</label>
+        <input type="text" name="title" id="title">
+        <label for="description">Description</label>
+        <input type="text" name="description" id="description">
+        <input type="submit" value="Add Book">
+    </form>
+    <h1>List of Books</h1>
+    {% for chef in all_chefs %}
+        <p>{{chef.name}} - {{chef.cuisine}}</p>
+        <p>{{chef.dishes.all}}</p>
+    {% endfor %}
+    <hr>
+    <h2>Add a Author</h2>
+    <form action="/process_author" method="POST">
+        {% csrf_token %}
+        <label for="first_name">First Name</label>
+        <input type="text" name="first_name" id="first_name">
+        <label for="last_name">Last Name</label>
+        <input type="text" name="last_name" id="last_name">
+        <input type="submit" value="Add Author">
+    </form>
+    <h1>List of Authors</h1>
+    {% for author in all_authors %}
+        <p>{{author.first_name}} - {{author.last_name}}</p>
+        <p>{{author.books.all}}</p>
+    {% endfor %}
+</body>
+</html>
