@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create User</title>
+    {% load static %}
+</head>
+<body>
+    <a href="/new_user">Create a User Account</a>
+    <h1>Home!</h1>
+    {% for user in all_users %}
+        <p>{{first_name}} {{last_name}}</p>
+    {% endfor %}
+</body>
+</html>
