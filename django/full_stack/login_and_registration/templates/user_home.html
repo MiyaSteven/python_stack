@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success</title>
+</head>
+<body>
+    <a href="/">Logout</a>
+    <h1>Successfully Registered!</h1>
+    <h2>Welcome {{user.first_name}}</h2>
+    <form action="post-message" method="POST">
+        {% csrf_token %}
+        <textarea name="message"></textarea><br>
+        <input type="submit" value="submit message">
+    </form><br>
+    <form method="post" action="post-comment">
+        {% csrf_token %}
+        <textarea name="comment"></textarea><br>
+        <input type="hidden" name="post-id" value="post-id">
+        <input type="submit" value="post comment">
+    </form><br>
+    <form method="post" action="messages">
+        {% csrf_token %}
+        <textarea name="comment"></textarea><br>
+        <input type="hidden" name="post-id" value="post-id">
+        <input type="text" value="comment">
+    </form><br>
+    {% for message in messages.messages.all %}
+        {% for comment in message.comments.all %}    # no parentheses!
+            <form method="post" action="comments">
+            {% csrf_token %}
+                <p>{{comment.comment}}</p>
+                <input type="submit" value="delete comment">
+            </form><br>
+        {% endfor %}
+    {% endfor %}
+</body>
+</html>
