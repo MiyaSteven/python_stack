@@ -1,0 +1,19 @@
+Questions:
+How do I check to see what is being stored in my database without using shell
+
+To Do:
+Create a sheet to help me startup projects faster
+Finish login method that checks for errors. email - password vs database
+Add clear session data function 
+Attach it to the logout button before redirecting back to the register/home page
+Before rendering the user_home or success page, check to make sure the user is logged in or throw an error "Must log in"
+
+Bonuses: 
+Add birthday field and validate the user's birthday is in the past
+Validate that the email is unique
+
+Sensei Bonuses:
+Validate birthday field that user is at least 13 years old (COPPA Compliant)
+Validate email uniqueness with AJAX
+Add JS file to perform server-side and client-side validations on required fields and invalid form entries. aka only accept valid form submits
+
