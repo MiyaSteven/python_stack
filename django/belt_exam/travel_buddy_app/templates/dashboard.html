@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    {% load static %}
+    <link type="text/css" rel="stylesheet" href="{% static '/css/base.css' %}">
+</head>
+<body>
+    <a href="/logout">Logout</a>
+    <a href="/trips/new">Create a new trip!</a>
+    <h1>Hello {{user.first_name}}!</h1>
+    <h2>{{user.first_name}}'s trips:</h2>
+<table>
+    <tr>
+        <th>Destination</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Plan</th>
+        <th>Actions</th>
+    </tr>
+    {% for trip in all_trips %}
+    <tr>
+        <td><a href="/details">{{trip.destination}}</a></td>
+        <td>{{trip.start_date}}</td>
+        <td>{{trip.end_date}}</td>
+        <td>{{trip.plan}}</td>
+        <td>
+            <a href="/remove_trip">Remove</a>
+            <a href="/edit">Edit</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
