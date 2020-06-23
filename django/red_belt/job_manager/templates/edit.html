@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a new job</title>
+</head>
+<body>
+    <h1>Hello {{user.first_name}}! Let's edit your job!</h1>
+    <a href="/logout">Logout</a>
+    {% if messages %}
+        <ul>
+        {% for error in messages %}
+            <li>{{error}}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    <form action="/edit/{{job.id}}" method="GET" class="form">
+        {% csrf_token %}
+        <label for="job_name">Title:</label>
+        <input type="text" name="job_name" id="job_name" value="{{job.job_name}}"><br>
+        <label for="description">Description:</label>
+        <input type="text" name="description" id="description" value="{{job.description}}"><br>
+        <label for="location">Location:</label>
+        <input type="text" name="location" id="location" value="{{job.location}}"><br>
+        <a href="/dashboard">Cancel</a>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

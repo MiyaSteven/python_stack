@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details</title>
+</head>
+<body>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/logout">Logout</a>
+    <h1>Hello {{user.first_name}}! These are the job details!</h1>
+    <div>
+        <h2>{{job.job_name}}</h2>
+        <form action="/add" method="POST">
+            <p>{{job.description}}</p>
+            <p>{{job.location}}</p>
+            <p>Posted by: {{job.user.first_name}}</p>
+            <p>Posted On: {{job.created_at}}</p>
+            <a href="/dashboard">Add to my jobs</a>
+        </form>
+    </div>
+</body>
+</html>
