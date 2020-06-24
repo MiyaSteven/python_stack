@@ -37,22 +37,56 @@ def login(request):
 def character(request):
     if 'user_id' not in request.session:
         return redirect('/')
-    return render(request, "character.html")
+    return render(request, "select.html")
 
-def create_character(request):
+def character_details(request, id):
+    if 'user_id' not in request.session:
+        return redirect('/')
+    context = {
+        "user": User.objects.get(id=request.session['user_id']),
+        "character": Character.objects.get(id=request.session['character_id']),
+        "items": Item.objects.get(id=request.session['item_id']),
+    }
+    return render(request, 'character_detail.html', context)
+
+def chosen(request):
+    if 'user_id' not in request.session:
+        return redirect('/')
+    context = {
+        "user": User.objects.get(id=request.session['user_id']),
+    }
+    return render(request, 'admin.html', context)
+
+def chosen_create_character(request):
     user = User.objects.get(id=request.session['user_id'])
-    this_character = Character.objects.create(
+    Character.objects.create(
         name=request.POST['name'],
         ability=request.POST['ability'],
-        bio=request.POST['bio'],
-        user=user
+        attack=request.POST['attack'],
+        health=request.POST['health'],
+        user=user,
     )
-    request.session['character_id'] = this_character.id
-    return redirect('/dashboard')
+    return redirect('/character')
 
-# def shop_manager():
-#     items = {}
-    
+def chosen_create_item(request):
+    character = Character.objects.get(id=request.session['user_id'])
+    this_item = Item.objects.create(
+        item_name=request.POST['item_name'],
+        item_effect=request.POST['item_effect'],
+        special_ability=request.POST['special_ability'],
+        character=character
+    )
+    request.session['item_id'] = this_item.id
+    return redirect('/character')
+
+def chosen_create_obstacle(request):
+    item = Item.objects.get(id=request.session['item_id'])
+    Obstacle.objects.create(
+        obstacle_name=request.POST['obstacle_name'],
+        health=request.POST['health'],
+        item=item,
+    )
+    return redirect('/character')
 
 def logout(request):
     request.session.clear()
