@@ -37,11 +37,7 @@ def login(request):
 def character(request):
     if 'user_id' not in request.session:
         return redirect('/')
-    context = {
-        "user": User.objects.get(id=request.session['user_id']),
-        "all_characters": Character.objects.all()
-    }
-    return render(request, "character.html", context)
+    return render(request, "character.html")
 
 def create_character(request):
     user = User.objects.get(id=request.session['user_id'])
@@ -54,8 +50,8 @@ def create_character(request):
     request.session['character_id'] = this_character.id
     return redirect('/dashboard')
 
-def shop_manager():
-    items = {}
+# def shop_manager():
+#     items = {}
     
 
 def logout(request):
