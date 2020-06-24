@@ -10,8 +10,9 @@
 </head>
 <body>
     <main>
+        <a href="/chosen">Chosen Ones</a>
         <div>
-            <form action="/game.html">
+            <form action="/character/{{character.id}}">
                 {% csrf_token %}
                 <h1>Character Select</h1>
                 <hr>

@@ -1,4 +1,5 @@
 from django.db import models
+from django import forms
 import re
 
 class UserManager(models.Manager):
@@ -23,6 +24,7 @@ class User(models.Model):
     email = models.EmailField(max_length=20)
     password = models.CharField(max_length=20)
     confirm_password = models.CharField(max_length=20)
+    chosen_one = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)   
     updated_at = models.DateTimeField(auto_now=True)
     objects = UserManager()
@@ -31,6 +33,7 @@ class Character(models.Model):
     name = models.CharField(max_length=20)
     ability = models.CharField(max_length=20)
     attack = models.CharField(max_length=20)
+    health = models.IntegerField()
     user = models.ForeignKey(User, related_name="character", on_delete = models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -39,12 +42,13 @@ class Item(models.Model):
     item_name = models.CharField(max_length=20)
     item_effect = models.CharField(max_length=255)
     special_ability = models.CharField(max_length=255)
+    character = models.ForeignKey(Character, related_name="item", on_delete = models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
 class Obstacle(models.Model):
     obstacle_name = models.CharField(max_length=20)
-    durability = models.IntegerField()
+    health = models.IntegerField()
     item = models.ForeignKey(Item, related_name="obstacle", on_delete = models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
