@@ -6,40 +6,29 @@
     <title>Character Select</title>
     {% load static %}
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="../static/css/character.css">
+    <link rel="stylesheet" href="{% static '/css/character.css' %}">
 </head>
 <body>
     <main>
         <div>
             <form action="/game.html">
+                {% csrf_token %}
                 <h1>Character Select</h1>
                 <hr>
                 <div class="row ">
                     <label class="col-sm">
                         <input type="radio" name="test" value="small" checked>
-                        <img src="../img/waifu2.png" alt="">
+                        <img src="../static/Images/user_sprite/donta_front_stand.png" alt="">
+                    </label>
+                    <!-- <label class="col-sm">
+                        <input type="radio" name="test" value="big">
+                        <img src="Images/user_sprite/donta_front_stand.png" alt="">
                     </label>
                     <label class="col-sm">
                         <input type="radio" name="test" value="big">
-                        <img src="../img/waifu.png" alt="">
-                    </label>
-                    <label class="col-sm">
-                        <input type="radio" name="test" value="big">
-                        <img src="../img/waifu.png" alt="">
-                    </label>
-                    <label class="col-sm">
-                        <input type="radio" name="test" value="big">
-                        <img src="../img/waifu.png" alt="">
-                    </label>
-                    <label class="col-sm">
-                        <input type="radio" name="test" value="big">
-                        <img src="../img/waifu2.png" alt="">
-                    </label>
-                    <label class="col-sm">
-                        <input type="radio" name="test" value="big">
-                        <img src="../img/waifu.png" alt="">
-                    </label>
-                    <label class="col-sm">
+                        <img src="Images/user_sprite/donta_front_stand.png" alt="">
+                    </label> -->
+                    <!-- <label class="col-sm">
                         <input type="radio" name="test" value="big">
                         <img src="../img/waifu.png" alt="">
                     </label>
@@ -47,6 +36,18 @@
                         <input type="radio" name="test" value="big">
                         <img src="../img/waifu2.png" alt="">
                     </label>
+                    <label class="col-sm">
+                        <input type="radio" name="test" value="big">
+                        <img src="../img/waifu.png" alt="">
+                    </label>
+                    <label class="col-sm">
+                        <input type="radio" name="test" value="big">
+                        <img src="../img/waifu.png" alt="">
+                    </label>
+                    <label class="col-sm">
+                        <input type="radio" name="test" value="big">
+                        <img src="../img/waifu2.png" alt="">
+                    </label> -->
                 </div>
                 <div class="center">
                     <button type="submit">Select Character</button>
