@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .models import User
+from .models import User, Character, Item, Obstacle
 from datetime import datetime
 import bcrypt
 
@@ -34,3 +34,30 @@ def login(request):
     messages.error(request, "Email and/or Password not found")
     return redirect('/')
     
+def character(request):
+    if 'user_id' not in request.session:
+        return redirect('/')
+    context = {
+        "user": User.objects.get(id=request.session['user_id']),
+        "all_characters": Character.objects.all()
+    }
+    return render(request, "character.html", context)
+
+def create_character(request):
+    user = User.objects.get(id=request.session['user_id'])
+    this_character = Character.objects.create(
+        name=request.POST['name'],
+        ability=request.POST['ability'],
+        bio=request.POST['bio'],
+        user=user
+    )
+    request.session['character_id'] = this_character.id
+    return redirect('/dashboard')
+
+def shop_manager():
+    items = {}
+    
+
+def logout(request):
+    request.session.clear()
+    return redirect('/')

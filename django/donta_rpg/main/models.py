@@ -29,7 +29,7 @@ class User(models.Model):
 
 class Character(models.Model):
     name = models.CharField(max_length=20)
-    special_ability = models.CharField(max_length=20)
+    ability = models.CharField(max_length=20)
     attack = models.CharField(max_length=20)
     user = models.ForeignKey(User, related_name="character", on_delete = models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
